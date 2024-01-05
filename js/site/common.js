@@ -11,7 +11,7 @@ define(function () {
 	}
 	//加载登录用户信息
 	function getUserInfo() {
-		console.log(getCookie('Authorization'))
+		console.log("getuserinfo")
 		//向服务器请求数据
 		$.ajax({
 			url: baseUrl + "user/getuserinfo.do",
@@ -26,7 +26,7 @@ define(function () {
 			crossDomain: true,
 			xhrFields: { withCredentials: true },
 			headers: {
-				'Authorization' : getCookie('Authorization')
+				'Authorization': getCookie('Authorization')
 			},
 			// headers:{'Content-Type':'application/json;charset=utf8','organId':'1333333333'},
 			success: function (user) {
@@ -65,22 +65,26 @@ define(function () {
 		// 给退出按钮挂上单击事件
 
 		$("#headerLogout").click(function () {
-			console.log(1111)
-			console.log(getCookie('Authorization'))
+			console.log('logout')
 			//向服务器请求数据
 			$.ajax({
 				url: baseUrl + "user/do_logout.do",
-				url: baseUrl + "user/getuserinfo.do",
-				beforeSend: function (request) {
-					request.setRequestHeader('Authorization', getCookie('Authorization'));
-				},
+				type: "post",
+				dataType: "json",
+				// beforeSend: function (request) {
+				// 	request.setRequestHeader('Authorization', getCookie('Authorization'));
+				// },
+				// beforeSend: function (request) {
+				// 	request.setRequestHeader("Authorization", sessionStorage.getItem("Authorization"));
+				// },
 				crossDomain: true,
 				xhrFields: { withCredentials: true },
-				// headers: {
-				// 	'Authorization': getCookie('Authorization')
-				// },
+				headers: {
+					'Authorization': getCookie('Authorization')
+				},
+				data:{token:getCookie('Authorization')},
 				success: function (rs) {
-					console.log(222)
+					console.log(rs)
 					if (rs.status == 0) {
 						//显示登录时span标签
 						$("#register_info").css({ display: "block" });
@@ -97,7 +101,7 @@ define(function () {
 		getParam: getParam,
 		getUserInfo: getUserInfo,
 		// getCartCount:getCartCount,
-		// loginOut: loginOut
+		loginOut: loginOut
 	};
 	function getCookie(cname) {
 		var name = cname + '=';

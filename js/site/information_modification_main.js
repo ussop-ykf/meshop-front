@@ -10,8 +10,7 @@ require(['jquery','./common','information_modification'],function(jquery, common
 		//加载登录用户信息
 		common.getUserInfo();
 		//用户登出
-		// common.loginOut();
-		
+		common.loginOut();
 		information_modification.ready();
 	});
 });
