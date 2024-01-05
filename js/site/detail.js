@@ -15,7 +15,7 @@ define(['jquery_SuperSlide','./common','handlebar'],function(jquery_SuperSlide, 
     function addCart(){
         $("#add_cart").click(function(){
          var num=$("#num").val();
-         
+            
         });
 
 
