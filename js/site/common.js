@@ -11,18 +11,26 @@ define(function () {
 	}
 	//加载登录用户信息
 	function getUserInfo() {
+		console.log(getCookie('Authorization'))
 		//向服务器请求数据
 		$.ajax({
 			url: baseUrl + "user/getuserinfo.do",
-			beforeSend: function (request) {
-				request.setRequestHeader('Authorization', getCookie('Authorization'));
-			},
+			type: "get",
+			dataType: "json",
+			// beforeSend: function (request) {
+			// 	request.setRequestHeader('Authorization', getCookie('Authorization'));
+			// },
+			// beforeSend: function (request) {
+			// 	request.setRequestHeader("Authorization", sessionStorage.getItem("Authorization"));
+			// },
 			crossDomain: true,
 			xhrFields: { withCredentials: true },
-			// headers: {
-			// 	'Authorization' : getCookie('Authorization')
-			// },
+			headers: {
+				'Authorization' : getCookie('Authorization')
+			},
+			// headers:{'Content-Type':'application/json;charset=utf8','organId':'1333333333'},
 			success: function (user) {
+				console.log(user)
 				//判断是否成功
 				if (user.status == 0) {
 					//隐藏登录时span标签
@@ -38,16 +46,16 @@ define(function () {
 		});
 	}
 	//获取用户购物车商品数量
-	function getCartCount(){
+	function getCartCount() {
 		$.ajax({
-			url:baseUrl+"cart/getcartcount.do",
-			xhrFields:{withCredentials:true},
-			crossDomain:true,
-			success:function(rs){
+			url: baseUrl + "cart/getcartcount.do",
+			xhrFields: { withCredentials: true },
+			crossDomain: true,
+			success: function (rs) {
 				//判断是否成功
-				if(rs.status==0){
+				if (rs.status == 0) {
 					//插入数据
-					$("#cartQuantity").html("[" +rs.data + "]");
+					$("#cartQuantity").html("[" + rs.data + "]");
 				}
 			}
 		});
