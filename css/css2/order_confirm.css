@@ -1,0 +1,61 @@
+@charset "utf-8";
+/* CSS Document */
+.address_list{
+	padding-bottom: 38px;
+	border-bottom: solid 1px #e8e8e8;
+	clear: both;
+	overflow: hidden;
+}
+.address_list>p{
+	font-size: 16px;
+	color: #454545;
+	font-weight: bold;
+	line-height: 54px;
+}
+.address_list li{
+	width:237px;
+	float: left;
+	margin-right: 2%;
+	cursor: pointer;
+}
+.address_box{
+	padding:10px 15px;
+	position: relative;
+	background: url(../images/common/shdz_bgon.gif) no-repeat 0 0;
+}
+.address_list strong{
+	display: block;
+	border-bottom: #dddddd 1px solid;
+	height: 22px;
+	line-height: 22px;
+	margin-bottom: 3px;
+	font-weight: normal;
+}
+.text{
+	line-height: 20px;
+	height: 40px;
+	overflow: hidden;
+	margin-bottom: 2px;
+}
+.address_box a{
+	color: #89b8e8;
+	margin-right: 10px;
+}
+.address_box>span{
+	height: 20px;
+	line-height: 20px;
+	padding:0 5px;
+	background: #f2f2f2;
+	color:#555;
+	position:absolute;
+	top:0px;
+	right: 0px;
+}
+.add_address{
+	cursor: pointer;
+	font-size: 14px;
+	color: #f3840d;
+	text-decoration: underline;
+	margin-top: 86px;
+	width:auto;
+}

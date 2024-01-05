@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html><head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="css/app/reset.css">
+		<link rel="stylesheet" href="css/app/footer.css">
+		<link rel="stylesheet" href="css/login.css">
+		<link rel="stylesheet" href="fonts/u-fonticon.css">
+		<title>机械工业品电商注册页面</title>
+		<script src="js/require.js" defer async="true"></script>
+		<script src="js/require.js" defer async="true" data-main="js/site/register_main.js" type="text/javascript"></script>
+
+	</head>
+<body>
+	<div class="usm-wrap  u-register   main">
+		<h1 class="header-icon">
+			<img src="images/logo.jpg" alt="" width="100px" height="100px">
+			<img src="images/lo.png" alt="" height="100px" width="200px">
+			<div id="tip-float" class="tip-float">已有机械之家账户？<a href="login.html" class="btn-login">直接登录</a></div>
+		</h1>
+		<form method="post" name="form" id="loginForm">
+			<input id="_csrf" data-check="yes" type="hidden" name="_csrf" value="b1a7fbd7-84ad-4b9c-9e93-6bf75f9c624f">
+			<input name="j_token" data-check="yes" type="hidden" id="j_token" value="1459342875763">
+			<input type="hidden" id="errorcount" value="" data-value="">
+			<input type="hidden" id="login_failure_name" value="">
+			<div class="content" id="ejs_container">
+				
+			
+	<div class="form left">
+		<h3 class="lh-37"><span class="font-bd">|</span>注册新用户</h3>
+	
+		<div class=" dib-wrap lh-37 ">
+			<label for="" class="dib">用户名</label>
+			<input name="username" id="username" type="text" data-check="yes" data-exp="void-m" placeholder="请输入用户名" class="dib">
+			<i class="icon_tips"></i><p class="errInfo_register"></p>
+		</div>
+		<!-- <div id="phone-erro" style="display:block;color: red; " ></div> -->
+		<!-- <div id="usernameErro" style="color: red; display: inline-block;" ></div> -->
+		<div class="error_tip" id="usernameError" style="display: none;color: red;">请输入用户名</div>
+		<div class=" dib-wrap ">
+			<label for="" class="dib">创建密码</label>
+			<input name="passWord" id="password" type="password" data-check="yes" data-exp="void-pwd-passWord2" placeholder="请输入密码" class="dib">
+			<i class="icon_tips"></i><p class="errInfo_register"></p>
+		</div>
+		<div class="error_tip" id="userpasswordError" style="display: none;color: red;">请输入密码</div>
+
+		<div class=" dib-wrap ">
+			<label for="" class="dib">确认密码</label>
+			<input id="rePassword" name="rePassword" type="password" data-exp="void-pwd-passWord" placeholder="请再次输入密码" class="dib">
+			<i class="icon_tips"></i><p class="errInfo_register"></p>
+		</div>
+		<div class="error_tip" id="repasswordError" style="display: none;color: red;">请输入确认密码</div>
+		<div class=" dib-wrap ">
+			<label for="" class="dib">手机号</label>
+			<input id="phone" name="phone" type="text" data-exp="void-pwd-passWord" placeholder="请输入手机号" class="dib">
+			<i class="icon_tips"></i><p class="errInfo_register"></p>
+		</div>
+		<div class="error_tip" id="phoneError" style="display: none;color: red;">请输入手机号</div>
+
+		<div class=" dib-wrap ">
+			<label for="" class="dib">邮箱</label>
+			<input id="email" name="email" type="text" data-exp="void-pwd-passWord" placeholder="请输入邮箱" class="dib">
+			<i class="icon_tips"></i><p class="errInfo_register"></p>
+		</div>
+		<div class="error_tip" id="emailError" style="display: none;color: red;">请输入邮箱</div>
+		<div class=" dib-wrap ">
+			<label for="" class="dib">密码提示问题：</label>
+			<input id="question" name="question" type="text" data-exp="void-pwd-passWord" placeholder="请输入密码提示问题" class="dib">
+			<i class="icon_tips"></i><p class="errInfo_register"></p>
+		</div>
+		<div class="error_tip" id="questionError" style="display: none;color: red;">请输入密码提示问题</div>
+
+		<div class=" dib-wrap ">
+			<label for="" class="dib">密码提示答案</label>
+			<input id="answer" name="answer" type="text" data-exp="void-pwd-passWord" placeholder="请输入密码提示答案" class="dib">
+			<i class="icon_tips"></i><p class="errInfo_register"></p>
+		</div>
+		<div class="error_tip" id="answerError" style="display: none;color: red;">请输入密码提示答案</div>
+
+		<div class=" dib-wrap ">
+			<label for="" class="dib">年龄</label>
+			<input id="age" name="age" type="text" data-exp="void-pwd-passWord" placeholder="请输入年龄" class="dib">
+			<i class="icon_tips"></i><p class="errInfo_register"></p>
+		</div>
+		<div class="error_tip" id="ageError" style="display: none;color: red;">请输入年龄</div>
+
+		<div class=" dib-wrap ">
+			<label for="#boy" class="dib">男</label>
+			<input type="radio" name="sex" id="boy" class="dib" value="1" checked="checked">
+			<label for="#girl" class="dib">女</label>
+			<input type="radio" name="sex" id="girl" class="dib" value="0">	
+		</div>
+		<div class="error_tip" id="sexError" style="display: none;color: red;">请选择性别</div>
+
+		<div class="dib-wrap check-box">
+			<label class="dib">&nbsp;</label>
+			<input type="checkbox" class="dib" checked="check" id="rememberBtn">
+			<label for="rememberBtn" class="dib" style="width:215px;">&nbsp;已阅读并同意<a class="font-bd" href="#">网站注册协议</a></label>
+		</div>
+		<div class="dib-wrap">
+			<label class="dib">&nbsp;</label>
+			<input id="register_btn" type="button" class="regiter-btn  btn dib" style="width:300px;height: 50px;cursor:pointer;" value="注&nbsp;&nbsp;&nbsp;册">
+
+		</div>
+	</div>
+</div>
+		</form>
+		<div class="clearfix"></div>
+		
+	</div>
+	
+	<form action="#" id="registerLoginForm" method="post" style="display:none;">
+            <input type="hidden" class="input hadDone" name="username" id="login_username" value="">
+            <input type="hidden" class="input" name="password" id="login_password" value="">
+            <input type="hidden" name="curTime" id="login_curTime" value="1459342875763">
+            <input type="hidden" id="login_targetUrl" name="targetUrl" value="#">
+            <input type="hidden" id="login_source" name="source" value="pc">
+    </form>
+        
+	
+
+	</div>
+  
+
+
+<div id="hm_t_undefined" class="hm-t-container">
+<div class="hm-t-go-top" style="display: block;">
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="css/app/reset.css">
+		<link rel="stylesheet" href="css/app/footer.css">
+		<link rel="stylesheet" href="css/login.css">
+		<link rel="stylesheet" href="fonts/sso-fonticon.css">
+		<script src="js/require.js" defer async="true"></script>
+		<script src="js/require.js" defer async="true" data-main="js/site/login_main.js" type="text/javascript"></script>
+
+		<title>机械工业品电商平台登录界面</title>
+	</head>
+	<body>
+		<div class="usm-wrap u-login main">
+			<h1 class="header-icon" style="text-align: center;">
+				<img src="images/lo.png" alt="" height="200px" width="500px">
+			</h1>
+			<form action="#" method="post" name="form" id="loginForm" autocomplete="off">
+				<input id="_csrf" data-check='yes' type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+				<input name="j_token" data-check='yes' type="hidden" id="j_token" value="1459331426664" />
+				<input type="hidden" id="errorcount" value="" data-value=""/>
+				<input type="hidden" id="login_failure_name" value="" />
+				<div class="content" id="ejs_container">
+					<div class="pic left">
+						<a href="#">
+							<img alt="欢迎登录机械工业品电商平台" src="images/logo.jpg" width="450px" height="270px">
+						</a>
+					</div>
+					<div class="form left">
+						<h3>账户登录</h3>
+						<div class="form-list dib-wrap ">
+							<label for="" class="dib listdib"><i class="icon-uniE614 icon-login"></i></label>
+							<input id="username" name="username" data-exp="void-me" type="text" placeholder="用户名" class="dib"/>
+						</div>
+						<div id="username-erro" style="display:none;color: red;">账户不能为空</div>
+						<div class="form-list dib-wrap ">
+							<label for="" class="dib listdib"><i class="icon-uniE610 icon-login"></i></label>
+							<input id="password_tmp" name="tem_password" type="password"  placeholder="密码" class="dib"/>
+							<!-- <input type="hidden" id="j_password" name="password" value="" />
+					        <input type="hidden" id="j_token" name="curTime" value="1459331426664" />
+					        <input type="hidden" id="targetUrl" name="targetUrl" value="http%3A%2F%2Fwww.XXX" />
+					        <input type="hidden" id="source" name="source" value="PC" /> -->
+						</div>
+						<div id="password-erro" style="display: none;color: red;">密码不能为空</div>
+						 
+						<div class="dib-wrap lh-37">
+							<input  type="checkbox"  class="dib" id="rememberBtn"/>
+							<label for="rememberBtn" class="dib">记住我</label>
+							<a href="#" class="right dib" >忘记密码？</a>
+						</div>
+						<div class="dib-wrap">
+							<!-- <button id="login_btn" class="login-btn  btn dib" >
+							登&nbsp;&nbsp;&nbsp;&nbsp;录
+							</button> -->
+							<input id="login_btn" type="button" class="login_btn btn dib" style="width:300px;height: 50px;cursor:pointer;" value="登&nbsp;&nbsp;&nbsp;录">
+							
+						</div>
+						<div class="dib-wrap lh-37">
+							<span class="font-bd"><a class="dib" href="register.html"> 还没有账号？<span class="font-blue">立即注册</span></a></span>
+						</div>
+					</div>
+				</div>
+			</form>
+			<div class="clearfix"></div>
+			
+		</div>
+		
+		<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+ 
+	</body>
+</html>
