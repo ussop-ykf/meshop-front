@@ -1,9 +1,9 @@
 require.config({
 	paths:{
-		"jquery":"/mall/dy2/js/jquery.min-1.11.3",
-		"handlebar": "/mall/dy2/js/handlebars-v4.0.11",
-		"ChineseDistricts": "/mall/dy2/js/jqueryDistpicker/distpicker.data",
-		"distpicker": "/mall/dy2/js/jqueryDistpicker/distpicker",
+		"jquery":"../jquery.min-1.11.3",
+		"handlebar": "../handlebars-v4.0.11",
+		"ChineseDistricts": "../jqueryDistpicker/distpicker.data",
+		"distpicker": "../jqueryDistpicker/distpicker",
 	},
 	shim:  {
 		'distpicker': ['jquery','ChineseDistricts'],
