@@ -1,6 +1,5 @@
 define(['jquery','handlebar','./common'],function(jquery, Handlebars, common){
 	function ready(){
-		alert("car");
 		//1.读取登录用户的购物车信息
 		getCartInfo();
 		//2.为购物车中每个商品绑定删除事件
