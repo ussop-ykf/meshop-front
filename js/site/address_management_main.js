@@ -1,6 +1,7 @@
 require.config({
 	paths:{
-		"jquery":"../jquery.min-1.11.3",
+		// "jquery":"../jquery.min-1.11.3",
+		"jquery":"../jquery-3.7.1.min",
 		"handlebar": "../handlebars-v4.0.11",
 		"ChineseDistricts": "../jqueryDistpicker/distpicker.data",
 		"distpicker": "../jqueryDistpicker/distpicker",

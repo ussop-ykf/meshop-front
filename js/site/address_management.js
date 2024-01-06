@@ -19,15 +19,13 @@ define(['jquery', 'ChineseDistricts', 'distpicker', 'handlebar', './common'], fu
 
 		//2.显示所有地址信息
 		showAddressInfo();
-
 		//3.设置默认地址事件绑定
-		$("#address_container").on("click", 'btn_default', function () {
+		$("#address_container").on("click", '.btn_default', function () {
 			//获得地址id
 			var addrId = $(this).attr("addr_id");
-			console.log(addrId)
 			//向服务器发送请求
 			$.ajax({
-				url: baseUrl + "addr/setdefault.do ",
+				url: baseUrl + "addr/setdefault.do",
 				xhrFields: { withCredentials: true },
 				crossDomain: true,
 				data: { 'id': addrId },
@@ -37,7 +35,9 @@ define(['jquery', 'ChineseDistricts', 'distpicker', 'handlebar', './common'], fu
 					// "content-type": "application/json;charset=UTF-8"
 				},
 				success: function (rs) {
+					// fillAddress(rs.data);
 					updatePageInfo(rs);
+
 				}
 			});
 		});
@@ -51,9 +51,15 @@ define(['jquery', 'ChineseDistricts', 'distpicker', 'handlebar', './common'], fu
 				crossDomain: true,
 				data: { 'id': addrId },
 				type: "post",
+				headers: {
+					'Authorization': getCookie('Authorization'),
+					// "content-type": "application/json;charset=UTF-8"
+				},
 				success: function (rs) {
 					//数据返回成功  信息添加到页面中
 					fillAddress(rs.data);
+					// updatePageInfo(rs);
+
 				}
 			});
 		});
@@ -65,13 +71,16 @@ define(['jquery', 'ChineseDistricts', 'distpicker', 'handlebar', './common'], fu
 				return;
 			}
 			var addrId = $(this).attr("addr_id");
-			console.log(addrId);
 			$.ajax({
-				url: baseUrl + "addr/deladdr.do  ",
+				url: baseUrl + "addr/deladdr.do",
 				xhrFields: { withCredentials: true },
 				crossDomain: true,
 				data: { 'id': addrId },
 				type: "get",
+				headers: {
+					'Authorization': getCookie('Authorization'),
+					// "content-type": "application/json;charset=UTF-8"
+				},
 				success: function (rs) {
 					//数据返回成功  信息添加到页面中
 					updatePageInfo(rs);
@@ -95,7 +104,6 @@ define(['jquery', 'ChineseDistricts', 'distpicker', 'handlebar', './common'], fu
 				zip: $("#zip").val(),
 				addr: $("#detailAddr").val()
 			};
-			console.log(formData)
 			//判断aId（修改/保存）
 			if (aId != null) {
 				formData["id"] = aId;
@@ -114,7 +122,6 @@ define(['jquery', 'ChineseDistricts', 'distpicker', 'handlebar', './common'], fu
 					district: $("#edistrictName").find("option:selected").text(),
 					zip: $("#zip").val(),
 					addr: $("#detailAddr").val()
-
 				},
 				headers: {
 					'Authorization': getCookie('Authorization'),
@@ -136,6 +143,10 @@ define(['jquery', 'ChineseDistricts', 'distpicker', 'handlebar', './common'], fu
 			url: baseUrl + "addr/findaddrs.do",
 			xhrFields: { withCredentials: true },
 			crossDomain: true,
+			headers: {
+				'Authorization': getCookie('Authorization'),
+				// "content-type": "application/json;charset=UTF-8"
+			},
 			success: function (rs) {
 				updatePageInfo(rs);   //更新页面信息
 			}
@@ -155,6 +166,7 @@ define(['jquery', 'ChineseDistricts', 'distpicker', 'handlebar', './common'], fu
 	}
 
 	function fillAddress(data) {       //获得地址信息填充标签显示
+
 		//填充省份市区 
 		$("#distpicker1").distpicker("destroy");   //销毁实例
 		$("#distpicker1").distpicker({
@@ -163,10 +175,12 @@ define(['jquery', 'ChineseDistricts', 'distpicker', 'handlebar', './common'], fu
 			district: data.district
 		});
 		//填充其他信息
-		$("#detailAddr").html(data.addr);
-		$("#zip").html(data.zip);
-		$("#consignee").html(data.name);
-		$("#phone").html(data.mobile);
+		$("#detailAddr").val(data.addr);
+		$("#zip").val(data.zip);
+		$("#consignee").val(data.name);
+		$("#phone").val(data.mobile);
+
+		
 	}
 
 	function validate() {      //字段验证
