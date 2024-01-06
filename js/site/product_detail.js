@@ -1,6 +1,9 @@
 define(['jquery','./common'],function(jquery, common){
 	
-	var pid=common.getParam("pid");//读取传递的商品编号
+	var search = window.location.search;  
+	var params = new URLSearchParams(search);  
+	var pid = params.get("id");//读取传递的商品编号
+	console.log(pid);
 	//1.获取商品详情
 	function ready(){
 		$.ajax({
@@ -10,12 +13,13 @@ define(['jquery','./common'],function(jquery, common){
 			type:"post",
 			data:{'productId':pid},
 			success:function(result){
+				console.log(result.data);
 				//数据加载成功时
 				if(result.status==0){
 					$("#product_name_container").html(result.data.name);    //添加商品名称
 					$("#product_name_container").attr("data-id",result.data.id);     //添加id
 					$("#productPriceContainer").html(result.data.price);     //添加商品价格
-					$("#productMainImage").attr("src",baseUrl+result.data.iconUrl);    //添加主图
+					$("#productMainImage").attr("src","images/products/"+result.data.iconUrl);    //添加主图
 					$("#productMainImage").addClass(".product_picture_img");
 					
 					$("#detailContainer").html(result.data.detail);   //添加详情

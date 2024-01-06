@@ -13,7 +13,6 @@ define(['jquery','./common','handlebar'],function(jquery, common, Handlebars){
 			$(this).addClass("on");
 			//获取订单信息
 			pageNum=1;
-//			alert("aaaaaaaa");
 			getOrders(status,pageNum,pageSize);
 		});
 		

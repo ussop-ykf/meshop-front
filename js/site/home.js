@@ -19,30 +19,29 @@ define(['jquery_SuperSlide','./common','handlebar'],function(jquery_SuperSlide, 
 	}
 	//2.加载热销商品
 	function getHotProduct(){
+		
 		$.ajax({
 			url:baseUrl+"product/findhotproducts.do",
-			xhrFields:{withCredentials:true},
-			crossDomain:true,
+			// beforeSend: function (request) {
+			// 	request.setRequestHeader('Authorization', getCookie('Authorization'));
+			// },
+			crossDomain: true,
+			type:'POST',
+			xhrFields: { withCredentials: true },
+			data:{num:"6"},
 			success:function(rs){
-				//创建对象 预编译
-				var tpl =$("#hot_tpl").html();
-				var func =Handlebars.compile(tpl);
-				//获取数据 处理数据（图片）
-				var data = new Array();
-				for(var i=0;i<rs.data.length;i++){
-					rs.data[i].iconUrl=baseUrl+rs.data[i].iconUrl;
-					data[i]=rs.data[i];
-					if(i>=4){
-						//前台只展示5条
-						break;
-					}
-				}
-				//添加数据插入页面 css样式修改
-				var result= func(data);
-				$("#hotContainer").html(result);
-				//为最后一个li添加样式
-				$("#hotContainer>li:last-child").add("right_border");
+				//循环解包的json数据
+				$.each(rs.data, function(index, item) {  
+					// 创建模板字符串
+					 console.log(item);
+					var template =  '<li class="unew-li"><a target="_blank" href="detail.html?img='+item.iconUrl+'&price='+item.price+'&name='+item.name+'&detail='+item.detail+'" class="unewli-box"><div class="unewli-img"><img src="images/'+item.iconUrl+'" data-original="images/'+item.iconUrl+'" /></div>  <h2 class="font-ublack font-title">'+item.name+'</h2><p class="price-box"></p><p class="font3 font-size2" style="padding-top:0px;"><span>'+item.price+'</span><span style="margin-left:50px;">市场价</span><span class=" text-de">'+item+100+'</span></p></a></li>';  
+					// 将模板字符串插入到页面中  
+					$('#hotContainer').append(template);  
+					
+					
+				  });  
 			}
+
 		});
 	}
 	//3.加载楼层信息
@@ -90,7 +89,7 @@ define(['jquery_SuperSlide','./common','handlebar'],function(jquery_SuperSlide, 
 	}
 	
 	//4.首页轮播
-	$(".slide_box").slide({mainCell:".bd ul" ,effect:"leftLoop",autoPlay:true});
+	// $(".slide_box").slide({mainCell:".bd ul" ,effect:"leftLoop",autoPlay:true});
 	//5.产品分类
 	$(".iten").live({
 		mouseenter:function(){

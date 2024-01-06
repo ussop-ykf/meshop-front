@@ -1,5 +1,6 @@
 define(['jquery','handlebar','./common'],function(jquery, Handlebars, common){
 	function ready(){
+		alert("car");
 		//1.读取登录用户的购物车信息
 		getCartInfo();
 		//2.为购物车中每个商品绑定删除事件
@@ -16,7 +17,7 @@ define(['jquery','handlebar','./common'],function(jquery, Handlebars, common){
 				}
 			});
 		});
-		
+
 		//3.清空购物车
 		$("#clear").click(function(){
 			$.ajax({
@@ -142,13 +143,20 @@ define(['jquery','handlebar','./common'],function(jquery, Handlebars, common){
 	}
 	//读取购物车信息
 	function getCartInfo(){
+		
 		$.ajax({
 			url:baseUrl+"cart/findallcarts.do",
-			xhrFields:{withCredentials:true},
+			type:"POST",
+			dataType:"json",
 			crossDomain:true,
-			async:false,
+			xhrFields:{withCredentials:true},
+			headers: {
+					'Authorization' : getCookie('Authorization')
+				},
 			success:function(rs){
 				//数据返回成功
+				
+				console.log(rs.data);
 				updatePageInfo(rs);
 			}
 		});
@@ -206,7 +214,17 @@ define(['jquery','handlebar','./common'],function(jquery, Handlebars, common){
 			$("#selectAll").removeAttr("checked");
 		}
 	}
-
+	function getCookie(cname) {
+		var name = cname + '=';
+		var ca = document.cookie.split(';');
+		for (var i = 0; i < ca.length; i++) {
+			if (ca[i].indexOf(name) >= 0) {
+				return ca[i].split('=')[1];
+			}
+		}
+		
+		return '';
+	}
 	return{
 		ready:ready,
 	};
