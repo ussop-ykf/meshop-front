@@ -159,18 +159,25 @@ define(['jquery'], function (jquery) {
 		if (!surePwdValidate()) {
 			return;
 		}
+		formData = {
+			"userId": userId,
+			"new_pwd": $("#newPwd").val(),
+			"re_pwd": $("#surePwd").val()
+		}
 		//向后台提交
 		$.ajax({
-			url: baseUrl + "user/resetpassword.do   ",
+			url: baseUrl + "user/setnewpassword.do",
 			type: "post",
 			xhrFields: { withCredentials: true },//允许跨域请求携带cookie数据
 			crossDomain: true,//跨域请求
-			data: { "id": userId, "newPwd": $("#newPwd").val() },
-			// headers: {
-			// 	'Authorization': getCookie('Authorization'),
-			// 	"content-type": "application/json;charset=UTF-8"
-			// },
+			// data: JSON.stringify(formData),
+			data: JSON.stringify(formData),
+			headers: {
+				// 'Authorization': getCookie('Authorization'),
+				"content-type": "application/json;charset=UTF-8"
+			},
 			success: function (data) {
+				console.log(data)
 				if (data.status == 0) {//修改成功
 					alert(data.msg);
 					$(window).attr("location", "login.html");

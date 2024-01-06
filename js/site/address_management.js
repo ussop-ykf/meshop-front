@@ -56,6 +56,7 @@ define(['jquery', 'ChineseDistricts', 'distpicker', 'handlebar', './common'], fu
 					// "content-type": "application/json;charset=UTF-8"
 				},
 				success: function (rs) {
+					aId = rs.data.id;
 					//数据返回成功  信息添加到页面中
 					fillAddress(rs.data);
 					// updatePageInfo(rs);
@@ -95,20 +96,23 @@ define(['jquery', 'ChineseDistricts', 'distpicker', 'handlebar', './common'], fu
 				return;
 			}
 			//提取数据 提交后台
-			var formData = {
-				name: $("#consignee").val(),
-				moblie: $("#phone").val(),
-				province: $("#eprovinceName").find("option:selected").text(),
-				city: $("#ecityName").find("option:selected").text(),
-				district: $("#edistrictName").find("option:selected").text(),
-				zip: $("#zip").val(),
-				addr: $("#detailAddr").val()
-			};
+			// var formData = {
+			// 	name: $("#consignee").val(),
+			// 	moblie: $("#phone").val(),
+			// 	province: $("#eprovinceName").find("option:selected").text(),
+			// 	city: $("#ecityName").find("option:selected").text(),
+			// 	district: $("#edistrictName").find("option:selected").text(),
+			// 	zip: $("#zip").val(),
+			// 	addr: $("#detailAddr").val(),
+			// 	aid: aId
+			// };
 			//判断aId（修改/保存）
+			var addrId = null;
 			if (aId != null) {
-				formData["id"] = aId;
+				addrId = aId;
 				aId = null;
 			}
+			console.log(addrId)
 			$.ajax({
 				url: baseUrl + "addr/saveaddr.do ",
 				xhrFields: { withCredentials: true },
@@ -121,7 +125,8 @@ define(['jquery', 'ChineseDistricts', 'distpicker', 'handlebar', './common'], fu
 					city: $("#ecityName").find("option:selected").text(),
 					district: $("#edistrictName").find("option:selected").text(),
 					zip: $("#zip").val(),
-					addr: $("#detailAddr").val()
+					addr: $("#detailAddr").val(),
+					addrId: addrId
 				},
 				headers: {
 					'Authorization': getCookie('Authorization'),
@@ -180,7 +185,7 @@ define(['jquery', 'ChineseDistricts', 'distpicker', 'handlebar', './common'], fu
 		$("#consignee").val(data.name);
 		$("#phone").val(data.mobile);
 
-		
+
 	}
 
 	function validate() {      //字段验证
