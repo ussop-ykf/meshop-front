@@ -30,7 +30,6 @@ define(function () {
 			},
 			// headers:{'Content-Type':'application/json;charset=utf8','organId':'1333333333'},
 			success: function (user) {
-				console.log(user)
 				//判断是否成功
 				if (user.status == 0) {
 					//隐藏登录时span标签
@@ -65,7 +64,6 @@ define(function () {
 		// 给退出按钮挂上单击事件
 
 		$("#headerLogout").click(function () {
-			console.log('logout')
 			//向服务器请求数据
 			$.ajax({
 				url: baseUrl + "user/do_logout.do",
@@ -84,7 +82,6 @@ define(function () {
 				},
 				data:{token:getCookie('Authorization')},
 				success: function (rs) {
-					console.log(rs)
 					if (rs.status == 0) {
 						//显示登录时span标签
 						$("#register_info").css({ display: "block" });

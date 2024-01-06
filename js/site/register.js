@@ -231,7 +231,7 @@ define(['jquery', './common'], function (jquery, common) {
 		return true;
 	}
 	$("input[name=sex]").click(function () {
-		console.log($('input:radio:checked').val())
+		// console.log($('input:radio:checked').val())
 	});
 	
 	//8.点击注册功能
@@ -278,7 +278,6 @@ define(['jquery', './common'], function (jquery, common) {
 				age: $("#age").val(),
 				sex: $('input:radio:checked').val()
 			};
-			console.log(formData)
 
 			//请求服务器
 			$.ajax({

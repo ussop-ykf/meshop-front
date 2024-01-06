@@ -112,7 +112,6 @@ define(['jquery', 'ChineseDistricts', 'distpicker', 'handlebar', './common'], fu
 				addrId = aId;
 				aId = null;
 			}
-			console.log(addrId)
 			$.ajax({
 				url: baseUrl + "addr/saveaddr.do ",
 				xhrFields: { withCredentials: true },

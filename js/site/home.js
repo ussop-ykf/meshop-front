@@ -30,7 +30,6 @@ define(['jquery_SuperSlide','./common','handlebar'],function(jquery_SuperSlide, 
 			data:{num:"4"},
 			success:function(rs){
 				//循环解包的json数据
-				console.log(rs)
 				$.each(rs.data, function(index, item) {  
 					// 创建模板字符串
 					console.log(item);

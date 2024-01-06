@@ -87,7 +87,6 @@ define(['jquery', './common'], function (jquery, common) {
 			// },
 			
 			success: function (data) {
-				console.log('ok')
 				alert(data.msg);
 				if (data.status == 0) {
 					$(window).attr("location", "login.html");

@@ -1,6 +1,4 @@
 define(['jquery','handlebar'], function (jquery,Handlebars){
-	console.log('address')
-
 	//加载当前用户地址信息
 	function getUserAddrInfo(){
 		$.ajax({

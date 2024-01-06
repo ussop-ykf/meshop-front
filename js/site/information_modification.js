@@ -60,26 +60,21 @@ define(['jquery', './common'], function (jquery, common) {
 		$("#btnSave").click(function () {
 			//非空验证
 			// if (nullValidate("userName", "姓名")) {
-			// 	console.log(1)
 			// 	return;
 			// }
 			if (nullValidate("age", "年龄")) {
-				console.log(2)
 				return;
 			}
 			if (nullValidate("phone", "电话")) {
-				console.log(3)
 				return;
 			}
 			if (nullValidate("email", "邮箱")) {
-				console.log(4)
 				return;
 			}
 			var sex = '女';
 			if ($("input[name='sex]:checked").val() == 1) {
 				sex = '男';
 			}
-			// console.log(userData)
 			//提交后台修改
 			var formData = {
 				account: $("#account").val(),
