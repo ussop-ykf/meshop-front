@@ -5,6 +5,9 @@ define(['jquery','handlebar'], function (jquery,Handlebars){
 			url:baseUrl+"addr/findaddrs.do ",
 			xhrFields:{withCredentials:true},
 			crossDomain:true,
+			headers: {
+				'Authorization': getCookie('Authorization')
+			},
 			success:function(rs){
 				if(rs.status==0){
 					//预编译模板 将信息添加到页面
@@ -77,7 +80,16 @@ define(['jquery','handlebar'], function (jquery,Handlebars){
 		});
 	}
 	
-	
+	function getCookie(cname) {
+		var name = cname + '=';
+		var ca = document.cookie.split(';');
+		for (var i = 0; i < ca.length; i++) {
+			if (ca[i].indexOf(name) >= 0) {
+				return ca[i].split('=')[1];
+			}
+		}
+		return '';
+	}
 	
 	return{
 		getUserAddrInfo:getUserAddrInfo,

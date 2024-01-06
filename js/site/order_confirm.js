@@ -1,37 +1,66 @@
-define(['jquery_SuperSlide','handlebar'], function (jquery,Handlebars){
-	//读取用户生成的订单购物车信息
-	function getCartInfo(){
+define(['jquery','handlebar','common'],function(jquery,Handlebars,common){
+	//1.获取订单编号
+	var orderNo = common.getParam("orderNo");
+	//2.获取订单详情
+	function getDetail(){
 		$.ajax({
-			url:baseUrl+"cart/findallcarts.do ",
+			url:baseUrl+"order/getdetail.do",
 			xhrFields:{withCredentials:true},
 			crossDomain:true,
-			type: 'post',
+			data:{"orderNo":orderNo},
 			headers: {
 				'Authorization': getCookie('Authorization')
 			},
 			success:function(rs){
-				console.log(rs)
-				updatePageInfo(rs);   //更新页面
+				//判断方法是否正确
+				if(rs.status==0){
+					//订单信息
+					$("#ordernum-container").html(rs.data.orderNo);
+					$("#order-created-container").html(rs.data.created);
+					$("#order-price-container").html(rs.data.amount);
+					$("#order-status-container").html(rs.data.statusDesc);
+					$("#order-ptype-container").html(rs.data.typeDesc);
+					$("#order-paytime-container").html(rs.data.paymentTime);
+					//拼接地址信息
+					var address = rs.data.address.province+" "
+					 	+rs.data.address.city+" "
+					 	+rs.data.address.addr+" "
+					 	+rs.data.address.zip+" "
+					 	+rs.data.address.name+" "
+					 	+rs.data.address.mobile+" ";
+					$("#address-container").html(address);
+					//商品订单列表
+					$("#item-container").html();
+					var tpl = $("#product-item-tpl").html();
+					var func = Handlebars.compile(tpl);
+					var result = func(rs.data.orderItems);
+					$("#item-container").html(result);
+					//支付 取消 确认收货按钮显示判断
+					if(rs.data.status!=1){
+						$("#order_pay").remove();
+						$("#order_cancel").remove();
+					}
+				}else{
+					alert(rs.msg);
+				}
 			}
 		});
 	}
 	
-	//提交确认信息生成订单
-	function submitBtn(){
-		$("#submit").click(function(){
-			//获取收货人地址id
-			var id=$("#submit").attr("datta-id");
-			//提交订单
+	//点击取消订单按钮
+	function orderCancel(){
+		//取消按钮挂单击事件
+		$("#order_cancel").click(function(){
 			$.ajax({
-				url:baseUrl+"order/createorder.do ",
+				url:baseUrl+"order/cancelorder.do",
 				xhrFields:{withCredentials:true},
 				crossDomain:true,
-				type:"post",
-				data:{'addId':id},
+				data:{'orderNo':orderNo},
 				success:function(rs){
+					//判断方法是否成功
 					if(rs.status==0){
-						//跳转到订单详情页面
-						$(window).attr("location","order_detail.html?orderNo="+rs.data.orderNo);
+						alert(rs.msg);
+						$(window).attr("location","order_list.html");
 					}else{
 						alert(rs.msg);
 					}
@@ -41,21 +70,11 @@ define(['jquery_SuperSlide','handlebar'], function (jquery,Handlebars){
 		});
 	}
 	
-	//根据返回数据更新页面信息
-	function updatePageInfo(rs){
-		if(rs.status==0){
-			$("#order_confirm_item_container").html(); 
-			var tpl=$("#product-item-tpl").html();
-			var func=Handlebars.compile(tpl);
-			var result=func(rs.data.lists);
-			$("#order_confirm_item_container").html(result); 
-			$("#amount").html("￥"+rs.data.totalPrice);    //更新购物车价格
-		}else{  //未登录时
-			// $(window).attr("location","login.html");
-		}
-	}
-	
-	
+	//单击搜索
+	$("#searchBtn").click(function(){
+		var proName = $("#keyword").val();
+		$(window).attr("location","product_search.html?name="+proName);
+	});
 	function getCookie(cname) {
 		var name = cname + '=';
 		var ca = document.cookie.split(';');
@@ -66,10 +85,8 @@ define(['jquery_SuperSlide','handlebar'], function (jquery,Handlebars){
 		}
 		return '';
 	}
-	
-   return{
-	   getCartInfo:getCartInfo,
-	//    submitBtn:submitBtn,
-	   
+	return{
+		getDetail:getDetail,
+		orderCancel:orderCancel
 	};
 });
