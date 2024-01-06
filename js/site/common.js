@@ -94,12 +94,6 @@ define(function () {
 			});
 		});
 	}
-	return {
-		getParam: getParam,
-		getUserInfo: getUserInfo,
-		// getCartCount:getCartCount,
-		loginOut: loginOut
-	};
 	function getCookie(cname) {
 		var name = cname + '=';
 		var ca = document.cookie.split(';');
@@ -110,4 +104,12 @@ define(function () {
 		}
 		return '';
 	}
+	return {
+		getParam: getParam,
+		getUserInfo: getUserInfo,
+		// getCartCount:getCartCount,
+		loginOut: loginOut,
+		// getCookie: getCookie
+	};
+	
 });

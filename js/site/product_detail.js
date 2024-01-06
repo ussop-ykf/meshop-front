@@ -34,7 +34,7 @@ define(['jquery','./common'],function(jquery, common){
 					var small_item="";
 					for(var i=0;i<images.length;i++){
 						small_item="<li><img src=\'";
-						images[i]=baseUrl+image[i];
+						images[i]=baseUrl+images[i];
 						small_item+=images[i];
 						small_item+="\'></li>";
 					}
