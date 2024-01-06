@@ -19,6 +19,7 @@ define(['jquery_SuperSlide','./common','handlebar'],function(jquery_SuperSlide, 
 	}
 	//2.加载热销商品
 	function getHotProduct(){
+		
 		$.ajax({
 			url:baseUrl+"product/findhotproducts.do",
 			// beforeSend: function (request) {
@@ -27,15 +28,17 @@ define(['jquery_SuperSlide','./common','handlebar'],function(jquery_SuperSlide, 
 			crossDomain: true,
 			type:'POST',
 			xhrFields: { withCredentials: true },
-			data:{num:"4"},
+			data:{num:"6"},
 			success:function(rs){
 				//循环解包的json数据
 				$.each(rs.data, function(index, item) {  
 					// 创建模板字符串
-					console.log(item);
-					var template =  '<li class="unew-li"><a target="_blank" href="detail.html?img='+item.iconUrl+'&price='+item.price+'&name='+item.name+'&detail='+item.detail+'" class="unewli-box"><div class="unewli-img"><img src="images/products/'+item.iconUrl+'" data-original="images/'+item.iconUrl+'" /></div>  <h2 class="font-ublack font-title">'+item.name+'</h2><p class="price-box"></p><p class="font3 font-size2" style="padding-top:0px;"><span>'+item.price+'</span><span style="margin-left:50px;">市场价</span><span class=" text-de">'+item+100+'</span></p></a></li>';  
+					 console.log(item);
+					var template =  '<li class="unew-li"><a target="_blank" href="detail.html?img='+item.iconUrl+'&price='+item.price+'&name='+item.name+'&detail='+item.detail+'" class="unewli-box"><div class="unewli-img"><img src="images/'+item.iconUrl+'" data-original="images/'+item.iconUrl+'" /></div>  <h2 class="font-ublack font-title">'+item.name+'</h2><p class="price-box"></p><p class="font3 font-size2" style="padding-top:0px;"><span>'+item.price+'</span><span style="margin-left:50px;">市场价</span><span class=" text-de">'+item+100+'</span></p></a></li>';  
 					// 将模板字符串插入到页面中  
 					$('#hotContainer').append(template);  
+					
+					
 				  });  
 			}
 
