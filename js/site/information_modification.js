@@ -5,9 +5,9 @@ define(['jquery', './common'], function (jquery, common) {
 		//显示当前用户信息
 		showUser();
 		//姓名非空验证
-		$("#username").blur(function () {
-			nullValidate("username", "姓名");
-		});
+		// $("#username").blur(function () {
+		// 	nullValidate("username", "姓名");
+		// });
 		//年龄非空验证  范围  组成
 		$("#age").blur(function () {
 			if (nullValidate("age", "年龄")) {

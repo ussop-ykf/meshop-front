@@ -5,7 +5,12 @@ define(['jquery_SuperSlide','handlebar'], function (jquery,Handlebars){
 			url:baseUrl+"cart/findallcarts.do ",
 			xhrFields:{withCredentials:true},
 			crossDomain:true,
+			type: 'post',
+			headers: {
+				'Authorization': getCookie('Authorization')
+			},
 			success:function(rs){
+				console.log(rs)
 				updatePageInfo(rs);   //更新页面
 			}
 		});
@@ -46,16 +51,25 @@ define(['jquery_SuperSlide','handlebar'], function (jquery,Handlebars){
 			$("#order_confirm_item_container").html(result); 
 			$("#amount").html("￥"+rs.data.totalPrice);    //更新购物车价格
 		}else{  //未登录时
-			$(window).attr("location","login.html");
+			// $(window).attr("location","login.html");
 		}
 	}
 	
 	
-	
+	function getCookie(cname) {
+		var name = cname + '=';
+		var ca = document.cookie.split(';');
+		for (var i = 0; i < ca.length; i++) {
+			if (ca[i].indexOf(name) >= 0) {
+				return ca[i].split('=')[1];
+			}
+		}
+		return '';
+	}
 	
    return{
 	   getCartInfo:getCartInfo,
-	   submitBtn:submitBtn,
+	//    submitBtn:submitBtn,
 	   
 	};
 });

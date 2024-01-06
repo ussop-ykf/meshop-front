@@ -1,4 +1,6 @@
 var baseUrl = "http://localhost:8080/";
+// var baseUrl = "http://192.168.137.1:8080/";
+
 define(function () {
 	//获取url中的参数
 	function getParam(name) {
@@ -89,6 +91,8 @@ define(function () {
 						$("#login_info").css({ display: "none" });
 						//清空购物车数量
 						$("#cartQuantity").html("[0]");
+						$(window).attr("location", "index.html")
+
 					}
 				}
 			});
