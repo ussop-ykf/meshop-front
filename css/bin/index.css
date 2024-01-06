@@ -93,7 +93,7 @@
 /* 首页列表 */
 
 .list-content{
-	width: 1260px; overflow: hidden; margin-left: -10px;
+	width: 1260px; margin-left: -10px;
 }
 
 
@@ -180,13 +180,13 @@
 	overflow: hidden;
 }
 .unew-list{
-	overflow: hidden;
+	
 	width: 1260px; height: 395px; position: relative;
 }
 .unew-li{
 	width:295px;
 	height:395px;
-	overflow: hidden;
+	
 	float: left;
 	background: #fff;
 	margin: 0 10px;
@@ -204,7 +204,8 @@
 }
 .slider-container{
 	width: auto;
-	overflow: hidden;
+	display: flex;  
+    flex-wrap: wrap; 
 }
 .slider-container li{ display: inline; }
 .unewli-img{
