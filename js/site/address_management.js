@@ -158,6 +158,11 @@ define(['jquery', 'ChineseDistricts', 'distpicker', 'handlebar', './common'], fu
 	}
 
 	function updatePageInfo(rs) {     //更新页面信息
+
+
+
+
+
 		if (rs.status == 0) {
 			$("#address_container").html();
 			var tpl = $("#address_tpl").html();

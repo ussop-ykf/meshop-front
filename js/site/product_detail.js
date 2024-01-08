@@ -27,20 +27,7 @@ define(['jquery','./common'],function(jquery, common){
 					$("#product_num").attr("data-stock",result.data.stock);
 					$("#stock_container").html("库存:"+result.data.stock);     //添加库存
 					
-					var subimages=result.data.subImages;    //子图
-					subimages=subimages.substring(0,subimages.length);
-					//切割图片
-					var images=subimages.split(",");
-					var small_item="";
-					for(var i=0;i<images.length;i++){
-						small_item="<li><img src=\'";
-						images[i]=baseUrl+images[i];
-						small_item+=images[i];
-						small_item+="\'></li>";
-					}
-					//将子图加入页面
-					$("#picturelist_container").html();
-					$("#picturelist_container").append(small_item);
+					
 				}else{//数据加载失败
 					
 				}
@@ -73,8 +60,10 @@ define(['jquery','./common'],function(jquery, common){
 	
 	//加入购物车
 	$("#addCart").click(function(){
+		
 		//验证数量是否符合规范
 		var count=$("#product_num").val();
+		console.log(count);
 		if(count<=0){
 			alert("请选择正确购买数量!");
 			return;
@@ -86,6 +75,9 @@ define(['jquery','./common'],function(jquery, common){
 			crossDomain:true,
 			type:"post",
 			data:{'productId':pid,'count':count},
+			headers: {
+				'Authorization' : getCookie('Authorization')
+			},
 			success:function(rs){
 				if(rs.status==0){
 					alert(rs.msg);
@@ -123,7 +115,17 @@ define(['jquery','./common'],function(jquery, common){
 		$(window).attr("location","product_search.html?name="+proName);
 	});
 	
-	
+	function getCookie(cname) {
+		var name = cname + '=';
+		var ca = document.cookie.split(';');
+		for (var i = 0; i < ca.length; i++) {
+			if (ca[i].indexOf(name) >= 0) {
+				return ca[i].split('=')[1];
+			}
+		}
+		
+		return '';
+	}
 	
 	return {
 		ready:ready
